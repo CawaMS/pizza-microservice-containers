@@ -26,7 +26,7 @@ az account set --s $SUBSCRIPTION_ID
 
 #Create resource group if doesn't exist
 $rgCheck = az group exists --name $RESOURCE_GROUP
-if (!$rgCheck)
+if ($rgCheck -eq "false")
 {
     Write-Output "Creating resource group $RESOURCE_GROUP ..."
     az group create --name $RESOURCE_GROUP --location $LOCATION
