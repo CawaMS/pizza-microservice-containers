@@ -47,7 +47,7 @@ az storage container create --name "pizzaorders" --account-name $STORAGE_NAME --
 #Create Log Analytics workspace
 az monitor log-analytics workspace create --resource-group $RESOURCE_GROUP --workspace-name $LOGANALYTICS_WORKSPACE_NAME
 $LOGANALYTICS_JSON=az monitor log-analytics workspace list --resource-group $RESOURCE_GROUP --query "[?name=='$LOGANALYTICS_WORKSPACE_NAME']" | ConvertFrom-Json
-$LOGANALYTICS_WORKSPACE_ID=$LOGANALYTICS_JSON.customerId
+$LOGANALYTICS_WORKSPACE_ID=$LOGANALYTICS_JSON.Id
 
 #Create Application Insights
 az extension add -n application-insights
