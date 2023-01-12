@@ -18,6 +18,7 @@ $CONTAINERAPPS_ENVIRONMENT=""
 $DAPR_INSTRUMENTATION_KEY=""
 $LOGANALYTICS_WORKSPACE_ID=""
 $APPLICATIONINSIGHTS_CONNECTION_STRING=""
+$SUBNET_ID="" #use `az network vnet subnet list` command to get the subnet resource id
 $ORDER_PROCESSOR_HTTP_URL=""
 
 #Connnect to an Azure subscription
@@ -67,7 +68,7 @@ $envExists = $envCheck.Length -gt 0
 if (!$envExists)
 {
     Write-Output "Creating Container App Environment $CONTAINERAPPS_ENVIRONMENT ..."
-    az containerapp env create --name $CONTAINERAPPS_ENVIRONMENT --resource-group $RESOURCE_GROUP --location $LOCATION --dapr-instrumentation-key $DAPR_INSTRUMENTATION_KEY --logs-workspace-id $LOGANALYTICS_WORKSPACE_ID
+    az containerapp env create --name $CONTAINERAPPS_ENVIRONMENT --resource-group $RESOURCE_GROUP --location $LOCATION --dapr-instrumentation-key $DAPR_INSTRUMENTATION_KEY --logs-workspace-id $LOGANALYTICS_WORKSPACE_ID --infrastructure-subnet-resource-id $SUBNET_ID  --internal-only false
 }
 else
 {
